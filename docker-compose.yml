@@ -1,0 +1,21 @@
+version: "3.7"
+
+# This is an example compose file, statically defined just for tests with a USB camera
+services:
+  data-source-mjpg:
+    build: .
+    command: --device-path /dev/video0 --input-type input_uvc.so --resolution 1280x720 --fps 15
+    devices:
+      - /dev/video0
+    labels:
+      - nuvlabox.component=False
+      - "traefik.enable=true"
+      - "traefik.http.routers.mymjpgrouter.rule=Host(`data-gateway`)"
+      - "traefik.http.routers.mymjpgrouter.entrypoints=web"
+      - "traefik.http.routers.mymjpgrouter.middlewares=mjpg-streamer-video0"
+      - "traefik.http.middlewares.mjpg-streamer-video0.stripprefix.prefixes=/video/video0"
+      - "traefik.http.middlewares.mjpg-streamer-video0.stripprefix.forceslash=true"
+    restart: on-failure
+
+
+
