@@ -5,17 +5,24 @@ services:
   data-source-mjpg:
     build: .
     command: --device-path /dev/video0 --input-type input_uvc.so --resolution 1280x720 --fps 15
+    networks:
+      - nuvlabox-shared-network
     devices:
       - /dev/video0
     labels:
       - nuvlabox.component=False
       - "traefik.enable=true"
-      - "traefik.http.routers.mymjpgrouter.rule=Host(`data-gateway`)"
-      - "traefik.http.routers.mymjpgrouter.entrypoints=web"
-      - "traefik.http.routers.mymjpgrouter.middlewares=mjpg-streamer-video0"
-      - "traefik.http.middlewares.mjpg-streamer-video0.stripprefix.prefixes=/video/video0"
-      - "traefik.http.middlewares.mjpg-streamer-video0.stripprefix.forceslash=true"
+      - "traefik.http.routers.mjpg-streamer-video0-router.rule=Host(`data-gateway`) && PathPrefix(`/video/video0`)"
+      - "traefik.http.routers.mjpg-streamer-video0-router.entrypoints=web"
+      - "traefik.http.routers.mjpg-streamer-video0-router.middlewares=video0-mid"
+      - "traefik.http.services.mjpg-streamer-video0-service.loadbalancer.server.port=8082"
+      - "traefik.http.middlewares.video0-mid.replacepath.path=/"
     restart: on-failure
 
+
+networks:
+  nuvlabox-shared-network:
+    external:
+      name: nuvlabox-shared-network
 
 
