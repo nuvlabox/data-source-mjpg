@@ -7,7 +7,6 @@ This component is only deployed on-demand, and takes care of streaming the raw M
 
 usage="--device-path </dev/videoX> --input-type <input_uvc.so> --resolution <1280x720> --fps <15>"
 
-POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
   key="$1"
@@ -39,7 +38,6 @@ do
       ;;
   esac
 done
-set -- "${POSITIONAL[@]}" # restore positional parameters
 
 device=${ARG_DEVICE}
 device_params=""
