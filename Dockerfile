@@ -47,6 +47,4 @@ WORKDIR /opt/nuvlabox/
 
 ONBUILD RUN ./license.sh
 
-ENTRYPOINT ["/sbin/tini", "--"]
-
-CMD ["./run.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "./run.sh"]
