@@ -29,7 +29,8 @@ LABEL git.build.time=${GIT_BUILD_TIME}
 LABEL git.run.number=${GITHUB_RUN_NUMBER}
 LABEL git.run.id=${TRAVIS_BUILD_WEB_URL}
 
-ENV LD_LIBRARY_PATH='/opt/vc/lib/:/usr/local/lib/mjpeg_streamer'
+ENV LD_LIBRARY_PATH='/opt/vc/lib/:/usr/local/lib/mjpeg_streamer' \
+    CRON_DATAGATEWAY_HEALTHCHECK=0
 
 COPY --from=mjpg-streamer-builder /usr/local/lib/mjpg-streamer /usr/local/lib/mjpg-streamer
 COPY --from=mjpg-streamer-builder /usr/local/bin/mjpg_streamer /usr/local/bin/mjpg_streamer
@@ -41,7 +42,7 @@ RUN apk update && apk add --no-cache v4l-utils-libs libgphoto2 tini curl \
 COPY code/ /opt/nuvlabox/
 
 HEALTHCHECK --interval=10s \
-  CMD curl -f http://data-gateway/video/$(hostname) 2>&1 || (kill `pgrep tini` && exit 1)
+  CMD curl -f http://localhost:8082
 
 WORKDIR /opt/nuvlabox/
 

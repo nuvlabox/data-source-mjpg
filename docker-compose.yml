@@ -16,6 +16,8 @@ services:
       - "traefik.http.routers.mjpg-streamer-video0-router.entrypoints=web"
       - "traefik.http.routers.mjpg-streamer-video0-router.middlewares=video0-mid"
       - "traefik.http.services.mjpg-streamer-video0-service.loadbalancer.server.port=8082"
+      - "traefik.http.services.mjpg-streamer-video0-service.loadbalancer.healthcheck.port=8082"
+      - "traefik.http.services.mjpg-streamer-video0-service.loadbalancer.healthcheck.path=/"
       - "traefik.http.middlewares.video0-mid.replacepath.path=/"
     restart: on-failure
 

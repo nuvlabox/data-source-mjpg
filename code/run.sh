@@ -56,6 +56,12 @@ input_type=${ARG_INPUT:-"input_uvc.so"}
 resolution=${ARG_RESOLUTION:-"1280x720"}
 fps=${ARG_FPS:-15}
 
+if [[ "${CRON_DATAGATEWAY_HEALTHCHECK}" == 1 ]]
+then
+  echo "Starting CRON_DATAGATEWAY_HEALTHCHECK"
+  ./cron.sh &
+fi
+
 /usr/local/bin/mjpg_streamer -i "${input_type} -n -r ${resolution} ${device_params} -f ${fps}" \
                              -o "output_http.so -w /usr/local/share/mjpg-streamer/www -p 8082"
 
