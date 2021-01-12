@@ -4,6 +4,6 @@
 
 while true
 do
-  sleep 45
-  curl -f http://data-gateway/video/$(hostname) 2>&1 || echo "Service proxying is down in NuvlaBox Data Gateway, restarting container..." && kill `pgrep tini`
+  sleep 30
+  curl -f -s http://data-gateway/video/$(hostname) >/dev/null || (echo "Service proxying is down in NuvlaBox Data Gateway, restarting container..." && kill `pgrep tini`)
 done
