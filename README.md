@@ -1,13 +1,13 @@
 # data-source-mjpg
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/nuvlabox/data-source-mjpg/graphs/commit-activity)
-
-
-[![CI](https://img.shields.io/travis/com/nuvlabox/data-source-mjpg?style=for-the-badge&logo=travis-ci&logoColor=white)](https://travis-ci.com/nuvlabox/data-source-mjpg)
 [![GitHub issues](https://img.shields.io/github/issues/nuvlabox/data-source-mjpg?style=for-the-badge&logo=github&logoColor=white)](https://GitHub.com/nuvlabox/data-source-mjpg/issues/)
 [![Docker pulls](https://img.shields.io/docker/pulls/nuvlabox/data-source-mjpg?style=for-the-badge&logo=Docker&logoColor=white)](https://cloud.docker.com/u/nuvlabox/repository/docker/nuvlabox/data-source-mjpg)
 [![Docker image size](https://img.shields.io/microbadger/image-size/nuvlabox/data-source-mjpg?style=for-the-badge&logo=Docker&logoColor=white)](https://cloud.docker.com/u/nuvlabox/repository/docker/nuvlabox/data-source-mjpg)
 
+
+![CI Build](https://github.com/nuvlabox/data-source-mjpg/actions/workflows/main.yml/badge.svg)
+![CI Release](https://github.com/nuvlabox/data-source-mjpg/actions/workflows/release.yml/badge.svg)
 
 **This repository contains the source code for the NuvlaBox MJPG Data Source - this microservice is only deployed on-demand, and takes care of routing the raw MJPG data from a peripheral into the [NuvlaBox](https://sixsq.com/products-and-services/nuvlabox/overview)'s Data Gateway**
 
